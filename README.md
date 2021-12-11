@@ -19,7 +19,8 @@ Pour mettre en place le système d’authentification et système d’autorisati
 
 Ligne 4-5 c’est l’encodage :
 
-```password_hashers: 
+```
+password_hashers: 
 Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:'auto'
 ```
 
@@ -118,7 +119,8 @@ Pour faciliter la création du système d’authentification installer un bundle
 
 Dans Router.php ligne 129 Pour dire qu’on applique uniquement la recherche (le routing) si le lien n’est pas null
 
-```if($class) 
+```
+if($class) 
       {
         $this->registerRoute($class);
       }
