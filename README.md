@@ -18,9 +18,10 @@ Pour mettre en place le système d’authentification et système d’autorisati
 ## -> On va dans config/package/security.yaml qui vient d’être créé :
 
 Ligne 4-5 c’est l’encodage :
+
+```password_hashers: 
+Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:'auto'
 ```
-password_hashers: 
-Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:'auto'```
 
 A partir ligne 7 rajouter :  
 ```
