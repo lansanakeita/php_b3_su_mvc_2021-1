@@ -1,0 +1,46 @@
+{% extends 'home/index.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block _cs_connexion %}cs-w-connexion-large{% endblock %}
+
+{% block class_body %} login {% endblock %}
+
+{% block _login %}
+	<div class="bg-white">
+		<div class="mb-2 text-right mr-n2 mt-n2">
+			<a href="{{ path('home') }}" class="link-dark">
+				<i class="fas fa-times fa-1x"></i>
+			</a>
+		</div>
+		<h6 class="text-center mb-3">Connexion</h6>
+
+		<form method="post">
+			{% if error %}
+				<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+			{% endif %}
+
+			{% if app.user %}
+				<div class="mb-3">Vous êtes déjà connecter {{ app.user.username }},
+					<a href="{{ path('app_logout') }}" class="cs-orange">Se déconnecter</a>
+				</div>
+			{% endif %}
+			<div>
+				<input type="email" placeholder="Email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+			</div>
+			<br>
+			<div class="my-2">
+				<input type="password" placeholder="Mot de passe" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+			</div>
+			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+			<br>
+			<div class="text-center">
+				<button class="btn btn-sm btn-success" type="submit">
+					Se connecter
+				</button>
+			</div>
+			
+			<br>
+		</form>
+	</div>
+{% endblock %}
