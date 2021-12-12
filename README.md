@@ -11,6 +11,7 @@
 - <https://symfony.com/index.php/doc/current/security.html>
 - <https://openclassrooms.com/fr/courses/5489656-construisez-un-site-web-a-l-aide-du-framework-symfony-5/5654131-securisez-lacces-de-votre-site-web>
 - <https://www.youtube.com/watch?v=NjF-gF1yNqo&ab_channel=LiorCHAMLA>
+- <https://www.php.net/manual/fr/function.password-hash.php>
 
 
 Installer flex : outils pour gérer l’installation et la configuration des librairie 
