@@ -1,10 +1,10 @@
 # Projet php
 
-<center>
+
 - **REMILI Rédouane**
 - **KRIFAH Amel**  
 - **COBLENTZ Robin**
-</center>
+
 ##
 
 ### Sources & lien utiles :
@@ -22,7 +22,7 @@ flex permet de configurer alors que composer permet seulement l’installation
 `composer require symfony/security-bundle`
 
 ## -> Chiffrement des mots de passe & Autorisations d'accès
-### -> On va dans config/package/security.yaml qui vient d’être créé :
+### --> On va dans config/package/security.yaml qui vient d’être créé :
 
 Ligne 4-5 c’est l’encodage :
 
@@ -53,14 +53,16 @@ Par
 `provider: app_user_provider`
 On dit ici au firewall de laisser rentrer le provider qui sera un utilisateur
 
-Dans la methode indexController ajouter le paramètre :```
+Dans la methode indexController ajouter le paramètre :
+```
 UserPasswordHasherInterface $passwordHashed
 ```
-Sans oublier sont namespace : ```
+Sans oublier sont namespace : 
+```
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 ```
 
-On fini par ajouter la method hashPassword au setPassword de la fonction index :
+On fini par ajouter la method hashPassword au ->setPassword de la fonction index :
 ```
 ->setPassword($passwordHasher->hashPassword($user, 'randompass'))
 ```
@@ -148,9 +150,10 @@ Et modifier dateTime : POur que la date soie automatiquement celle d'aujourd'hui
 `php vendor/bin/doctrine orm:validate-schema`
 
 Puis pour modifier et mettre à jours la bdd par rapport au model : 
+
 `php vendor/bin/doctrine orm:schema-tool:update --force`
 
-#### Voila donc l'attribut role qui s'ajoute à USER
+#### Voila donc l'attribut role qui s'ajoute à USER et le mdp encodé
 ![Texte alternatif](/imgReadme/capture.png "Attribut RoleUser").
 
 
