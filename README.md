@@ -13,7 +13,7 @@
 - <https://www.youtube.com/watch?v=NjF-gF1yNqo&ab_channel=LiorCHAMLA>
 - <https://www.php.net/manual/fr/function.password-hash.php>
 
-
+#
 Installer flex : outils pour gérer l’installation et la configuration des librairie 
 
 `composer require symfony/flex`
