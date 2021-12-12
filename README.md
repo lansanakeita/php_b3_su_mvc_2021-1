@@ -1,5 +1,11 @@
 # Projet php
 
+##
+- **REMILI Rédouane**
+- **KRIFAH Amel**  
+- **COBLENTZ Robin**
+
+
 ### Sources & lien utiles :
 - <https://symfony.com/index.php/doc/current/security.html>
 - <https://openclassrooms.com/fr/courses/5489656-construisez-un-site-web-a-l-aide-du-framework-symfony-5/5654131-securisez-lacces-de-votre-site-web>
@@ -11,11 +17,11 @@ Installer flex : outils pour gérer l’installation et la configuration des lib
 `composer require symfony/flex`
 flex permet de configurer alors que composer permet seulement l’installation
 
-Pour mettre en place le système d’authentification et système d’autorisation (permet de limiter les accès à certaine ressources) de connexion, on installe un bundle Symfony :
+**Pour mettre en place le système d’authentification et système d’autorisation (permet de limiter les accès à certaine ressources) de connexion, on installe un bundle Symfony :**
 `composer require symfony/security-bundle`
 
-
-## -> On va dans config/package/security.yaml qui vient d’être créé :
+## -> Chiffrement des mots de passe & Autorisations d'accès
+### -> On va dans config/package/security.yaml qui vient d’être créé :
 
 Ligne 4-5 c’est l’encodage :
 
@@ -41,8 +47,8 @@ Par
 `provider: app_user_provider`
 On dit ici au firewall de laisser rentrer le provider qui sera un utilisateur
 
-
-## ->	Dans l’entité USER rajouter un rôle :
+## -> Structure d'un utilisateur (BDD, entité Doctrine) & Gestion des rôles
+### ->	Dans l’entité USER rajouter un rôle :
 ```
 /**
      * @ORM\Column(type="json")
@@ -96,18 +102,21 @@ Tout en bas de Entity\User rajouter pour définir le contrat
 ```
 
 
-## -> Dans indexController rajouter les champs :
+### -> Dans indexController rajouter les champs :
 `->setRoles(['ROLE_USER'])`
 
-Et modifier dateTime :
+Et modifier dateTime : POur que la date soie automatiquement celle d'aujourd'hui
 `->setBirthDate(new DateTime);`
 
 
-## -> Pour vérifier l’état de la bdd par rapport au model : 
+### -> Pour vérifier l’état de la bdd par rapport au model : 
 `php vendor/bin/doctrine orm:validate-schema`
 
 Puis pour modifier et mettre à jours la bdd par rapport au model : 
 `php vendor/bin/doctrine orm:schema-tool:update --force`
+
+#### Voila donc l'attribut role qui s'ajoute à USER
+![Texte alternatif](/imgReadme/capture.png "Attribut RoleUser").
 
 
 ## -> Système Inscription : 
