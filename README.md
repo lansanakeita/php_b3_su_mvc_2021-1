@@ -22,7 +22,7 @@ flex permet de configurer alors que composer permet seulement l’installation
 **Pour mettre en place le système d’authentification et système d’autorisation (permet de limiter les accès à certaine ressources) de connexion, on installe un bundle Symfony :**
 `composer require symfony/security-bundle`
 
-## -> Chiffrement des mots de passe & Autorisations d'accès
+# -> Chiffrement des mots de passe & Autorisations d'accès
 ### --> On va dans config/package/security.yaml qui vient d’être créé :
 
 Ligne 4-5 c’est l’encodage :
@@ -85,7 +85,7 @@ public function index(EntityManager $em)
       ->setBirthDate(new DateTime);
 ```
 
-## -> Structure d'un utilisateur (BDD, entité Doctrine) & Gestion des rôles
+# -> Structure d'un utilisateur (BDD, entité Doctrine) & Gestion des rôles
 ### ->	Dans l’entité USER rajouter un rôle :
 ```
 /**
@@ -158,7 +158,7 @@ Puis pour modifier et mettre à jours la bdd par rapport au model :
 ![Texte alternatif](/imgReadme/capture.png "Attribut RoleUser").
 
 
-## -> Système Inscription : 
+# -> Système Inscription : 
 ### -> N’aura pas marché malgré les différents moyens utilisés
 
 
