@@ -1,10 +1,11 @@
 # Projet php
 
-##
+<center>
 - **REMILI Rédouane**
 - **KRIFAH Amel**  
 - **COBLENTZ Robin**
-
+</center>
+##
 
 ### Sources & lien utiles :
 - <https://symfony.com/index.php/doc/current/security.html>
@@ -29,6 +30,11 @@ Ligne 4-5 c’est l’encodage :
 password_hashers: 
 Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:'auto'
 ```
+Rajouter juste à la suite l'algorithme d'encodage de l'user :
+```
+App\Entity\User:
+        algorithm: auto
+```
 
 A partir ligne 7 rajouter :  
 ```
@@ -46,6 +52,35 @@ Puis ligne 17 remplacer
 Par
 `provider: app_user_provider`
 On dit ici au firewall de laisser rentrer le provider qui sera un utilisateur
+
+Dans la methode indexController ajouter le paramètre :```
+UserPasswordHasherInterface $passwordHashed
+```
+Sans oublier sont namespace : ```
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+```
+
+On fini par ajouter la method hashPassword au setPassword de la fonction index :
+```
+->setPassword($passwordHasher->hashPassword($user, 'randompass'))
+```
+#### Mais il s'emble que l'injection de dependance ne marche pas : Il y a un msg d'erreur et le mdp n'est pas crypté
+#### -> Donc on utilise une methode de cryptage php
+
+```
+public function index(EntityManager $em)
+  {
+    $user = new User();
+    $passwordHashed = password_hash("randompass", PASSWORD_BCRYPT,  ['cost' => 12]);
+
+    $user->setName("Red")
+      ->setFirstName("John")
+      ->setUsername("Bobby")
+      ->setPassword($passwordHashed)
+      ->setEmail("bob@bob.com")
+      ->setRoles(['ROLE_USER'])
+      ->setBirthDate(new DateTime);
+```
 
 ## -> Structure d'un utilisateur (BDD, entité Doctrine) & Gestion des rôles
 ### ->	Dans l’entité USER rajouter un rôle :
@@ -145,10 +180,11 @@ guard:
       path: app_logout
 ```
 
-Depuis un ancien projet Symfony rajouter :
+En s'inspirant des projets Symfony rajouter :
 -	Un fichier : SecurityController.php
 - Un Fichier src\Security\ LoginFormAuthenticator.php 
 - Un Fichier templates\security\ login.html.twig
+- Un fichier templates\registration\ register.html.twig
 
-* ##### Mais ça n'a pas marché :-(*
+##### Mais ça n'a pas marché :-(
 

@@ -117,7 +117,7 @@ class Router
         $params[$paramName] = $this->container->get($paramType);
       }
     }
-
+  
     return $params;
   }
 
